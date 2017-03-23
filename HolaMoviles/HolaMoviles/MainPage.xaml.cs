@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HolaMoviles.Servicios;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Xamarin.Forms;
@@ -14,24 +15,32 @@ namespace HolaMoviles
 		}
 
 
-		public MainPage()
-		{
-			InitializeComponent();
-			ListaGeneral = new ObservableCollection<Persona>();
-			listadoDatos.ItemsSource = ListaGeneral;
+        public MainPage()
+        {
+            InitializeComponent();
+            ListaGeneral = new ObservableCollection<Persona>();
+            listadoDatos.ItemsSource = ListaGeneral;
 
-			boton.Clicked += (s, e) => {
-				var mensaje = "Hola " + texto.Text;
-				//await DisplayAlert("Mensaje", mensaje, "Cancelar");
+            boton.Clicked += (s, e) =>
+            {
+                var mensaje = "Hola " + texto.Text;
+                //await DisplayAlert("Mensaje", mensaje, "Cancelar");
 
-				label.Text = mensaje;
+                label.Text = mensaje;
 
-				/*await Navigation.PushModalAsync(new DetallePersona() { 
+                /*await Navigation.PushModalAsync(new DetallePersona() { 
 					Nombre = texto.Text 
 				});*/
 
-				ListaGeneral.Add(new Contratista() { Nombre = texto.Text });
-			};
-		}
+                ListaGeneral.Add(new Contratista() { Nombre = texto.Text });
+            };
+
+            botonWeb.Clicked += (s, e) =>
+            {
+                ServicioRest Rest = new ServicioRest();
+                Rest.Conectar();
+            };
+
+        }
 	}
 }
