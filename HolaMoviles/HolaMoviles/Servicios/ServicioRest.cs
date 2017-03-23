@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace HolaMoviles.Servicios
 {
-    class ServicioRest
+    public class ServicioRest
     {
         public async void Conectar()
         {
@@ -17,7 +17,7 @@ namespace HolaMoviles.Servicios
                 using (var httpClient = new HttpClient())
                 {
                     //https://restcountries.eu/#api-endpoints
-                    httpClient.BaseAddress = new Uri("https://restcountries.eu/rest/v2/alpha/col");
+                    httpClient.BaseAddress = new Uri("http://restcountries.eu/rest/v2/alpha/col");
                     var resultado = await httpClient.GetAsync("/all").ConfigureAwait(false);
                     var codigo = resultado.StatusCode;
                     Debug.WriteLine(resultado);
